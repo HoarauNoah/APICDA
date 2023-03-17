@@ -1,19 +1,24 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using APICDA.Data;
 namespace APICDA.Models
 {
     public class Product
     {
-        private int id;
-        private string name;
-        private string description;
-        private Category category;
-        private float price;
-        private int stock;
-        public int Id { get => id; set => id = value; }
-        public string Name { get => name; set => name = value; }
-        public string Description { get => description; set => description = value; }
-        public Category Category { get => category; set => category = value; }
-        public float Price { get => price; set => price = value; }
-        public int Stock { get => stock; set => stock = value; }
+        private Guid _id;
+        private string _name;
+        private string _description;
+        private Category _category;
+        private float _price;
+        private int _stock;
+        private Supplier _supplier;
+        public string name { get => _name; set => _name = value; }
+        public string description { get => _description; set => _description = value; }
+        public Category category { get => _category; set => _category = value; }
+        public float price { get => _price; set => _price = value; }
+        public int stock { get => _stock; set => _stock = value; }
+        public Guid id { get => _id; set => _id = value; }
+        public Supplier supplier { get => _supplier; set => _supplier = value; }
     }
 }
+
+

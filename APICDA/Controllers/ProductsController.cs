@@ -12,55 +12,55 @@ namespace APICDA.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CategoriesController : ControllerBase
+    public class ProductsController : ControllerBase
     {
         private readonly ShopDbContext _context;
 
-        public CategoriesController(ShopDbContext context)
+        public ProductsController(ShopDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/Categories
+        // GET: api/Products
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Category>>> GetCategories()
+        public async Task<ActionResult<IEnumerable<Product>>> GetProduct()
         {
-          if (_context.Categories == null)
+          if (_context.Product == null)
           {
               return NotFound();
           }
-            return await _context.Categories.ToListAsync();
+            return await _context.Product.ToListAsync();
         }
 
-        // GET: api/Categories/5
+        // GET: api/Products/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Category>> GetCategory(Guid id)
+        public async Task<ActionResult<Product>> GetProduct(Guid id)
         {
-          if (_context.Categories == null)
+          if (_context.Product == null)
           {
               return NotFound();
           }
-            var category = await _context.Categories.FindAsync(id);
+            var product = await _context.Product.FindAsync(id);
 
-            if (category == null)
+            if (product == null)
             {
                 return NotFound();
             }
 
-            return category;
+            return product;
         }
 
-        // PUT: api/Categories/5
+        // PUT: api/Products/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCategory(Guid id, Category category)
+        public async Task<IActionResult> PutProduct(Guid id, Product product)
         {
-            if (id != category.id)
+            if (id != product.id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(category).State = EntityState.Modified;
+            _context.Entry(product).State = EntityState.Modified;
 
             try
             {
@@ -68,7 +68,7 @@ namespace APICDA.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CategoryExists(id))
+                if (!ProductExists(id))
                 {
                     return NotFound();
                 }
@@ -81,44 +81,44 @@ namespace APICDA.Controllers
             return NoContent();
         }
 
-        // POST: api/Categories
+        // POST: api/Products
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Category>> PostCategory(Category category)
+        public async Task<ActionResult<Product>> PostProduct(Product product)
         {
-          if (_context.Categories == null)
+          if (_context.Product == null)
           {
-              return Problem("Entity set 'ShopDbContext.Categories'  is null.");
+              return Problem("Entity set 'ShopDbContext.Product'  is null.");
           }
-            _context.Categories.Add(category);
+            _context.Product.Add(product);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetCategory", new { id = category.id }, category);
+            return CreatedAtAction("GetProduct", new { id = product.id }, product);
         }
 
-        // DELETE: api/Categories/5
+        // DELETE: api/Products/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCategory(Guid id)
+        public async Task<IActionResult> DeleteProduct(Guid id)
         {
-            if (_context.Categories == null)
+            if (_context.Product == null)
             {
                 return NotFound();
             }
-            var category = await _context.Categories.FindAsync(id);
-            if (category == null)
+            var product = await _context.Product.FindAsync(id);
+            if (product == null)
             {
                 return NotFound();
             }
 
-            _context.Categories.Remove(category);
+            _context.Product.Remove(product);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool CategoryExists(Guid id)
+        private bool ProductExists(Guid id)
         {
-            return (_context.Categories?.Any(e => e.id == id)).GetValueOrDefault();
+            return (_context.Product?.Any(e => e.id == id)).GetValueOrDefault();
         }
     }
 }

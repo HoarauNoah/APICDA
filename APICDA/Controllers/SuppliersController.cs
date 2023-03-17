@@ -12,55 +12,55 @@ namespace APICDA.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CategoriesController : ControllerBase
+    public class SuppliersController : ControllerBase
     {
         private readonly ShopDbContext _context;
 
-        public CategoriesController(ShopDbContext context)
+        public SuppliersController(ShopDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/Categories
+        // GET: api/Suppliers
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Category>>> GetCategories()
+        public async Task<ActionResult<IEnumerable<Supplier>>> GetSupplier()
         {
-          if (_context.Categories == null)
+          if (_context.Supplier == null)
           {
               return NotFound();
           }
-            return await _context.Categories.ToListAsync();
+            return await _context.Supplier.ToListAsync();
         }
 
-        // GET: api/Categories/5
+        // GET: api/Suppliers/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Category>> GetCategory(Guid id)
+        public async Task<ActionResult<Supplier>> GetSupplier(Guid id)
         {
-          if (_context.Categories == null)
+          if (_context.Supplier == null)
           {
               return NotFound();
           }
-            var category = await _context.Categories.FindAsync(id);
+            var supplier = await _context.Supplier.FindAsync(id);
 
-            if (category == null)
+            if (supplier == null)
             {
                 return NotFound();
             }
 
-            return category;
+            return supplier;
         }
 
-        // PUT: api/Categories/5
+        // PUT: api/Suppliers/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCategory(Guid id, Category category)
+        public async Task<IActionResult> PutSupplier(Guid id, Supplier supplier)
         {
-            if (id != category.id)
+            if (id != supplier.id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(category).State = EntityState.Modified;
+            _context.Entry(supplier).State = EntityState.Modified;
 
             try
             {
@@ -68,7 +68,7 @@ namespace APICDA.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CategoryExists(id))
+                if (!SupplierExists(id))
                 {
                     return NotFound();
                 }
@@ -81,44 +81,44 @@ namespace APICDA.Controllers
             return NoContent();
         }
 
-        // POST: api/Categories
+        // POST: api/Suppliers
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Category>> PostCategory(Category category)
+        public async Task<ActionResult<Supplier>> PostSupplier(Supplier supplier)
         {
-          if (_context.Categories == null)
+          if (_context.Supplier == null)
           {
-              return Problem("Entity set 'ShopDbContext.Categories'  is null.");
+              return Problem("Entity set 'ShopDbContext.Supplier'  is null.");
           }
-            _context.Categories.Add(category);
+            _context.Supplier.Add(supplier);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetCategory", new { id = category.id }, category);
+            return CreatedAtAction("GetSupplier", new { id = supplier.id }, supplier);
         }
 
-        // DELETE: api/Categories/5
+        // DELETE: api/Suppliers/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCategory(Guid id)
+        public async Task<IActionResult> DeleteSupplier(Guid id)
         {
-            if (_context.Categories == null)
+            if (_context.Supplier == null)
             {
                 return NotFound();
             }
-            var category = await _context.Categories.FindAsync(id);
-            if (category == null)
+            var supplier = await _context.Supplier.FindAsync(id);
+            if (supplier == null)
             {
                 return NotFound();
             }
 
-            _context.Categories.Remove(category);
+            _context.Supplier.Remove(supplier);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool CategoryExists(Guid id)
+        private bool SupplierExists(Guid id)
         {
-            return (_context.Categories?.Any(e => e.id == id)).GetValueOrDefault();
+            return (_context.Supplier?.Any(e => e.id == id)).GetValueOrDefault();
         }
     }
 }

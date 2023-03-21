@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "K7Hf8o0g23jDyNmpi/SK2apHrA7nWPadytMmfxbMAFzbod4Voco8tR0nqIeHaXCPS+JNnx+A2OrlJqf6+i9ChA==",
+  "dgSpecHash": "UBjnlz59m8U46Ayyv6bGiAU3EwqUHuGbtBiHP12BGYPmZo4+SpMDy/GqCiBWloeQmuzjW7LRgnRbZaXcZRjt+Q==",
   "success": true,
   "projectFilePath": "C:\\Users\\Dream\\Documents\\rattrapage CDA\\APICDA\\APICDA\\APICDA.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Dream\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\Dream\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
+    "C:\\Users\\Dream\\.nuget\\packages\\dotenv.net\\3.1.2\\dotenv.net.3.1.2.nupkg.sha512",
     "C:\\Users\\Dream\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Dream\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",
     "C:\\Users\\Dream\\.nuget\\packages\\messagepack.annotations\\2.1.152\\messagepack.annotations.2.1.152.nupkg.sha512",

@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using APICDA.Data;
 using APICDA.Models;
+using System.Security.Cryptography;
+using Microsoft.AspNetCore.Authorization;
 
 namespace APICDA.Controllers
 {
@@ -22,6 +24,7 @@ namespace APICDA.Controllers
         }
 
         // GET: api/Users
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
@@ -33,6 +36,7 @@ namespace APICDA.Controllers
         }
 
         // GET: api/Users/5
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<ActionResult<User>> GetUser(Guid id)
         {
@@ -52,6 +56,7 @@ namespace APICDA.Controllers
 
         // PUT: api/Users/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [Authorize]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutUser(Guid id, User user)
         {
@@ -83,6 +88,7 @@ namespace APICDA.Controllers
 
         // POST: api/Users
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult<User>> PostUser(User user)
         {
@@ -90,6 +96,8 @@ namespace APICDA.Controllers
           {
               return Problem("Entity set 'ShopDbContext.Users'  is null.");
           }
+            SHA256 passhash = SHA256.Create(user.password);
+            user.password = passhash.ToString();
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
@@ -97,6 +105,7 @@ namespace APICDA.Controllers
         }
 
         // DELETE: api/Users/5
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser(Guid id)
         {
@@ -114,7 +123,7 @@ namespace APICDA.Controllers
             await _context.SaveChangesAsync();
 
             return NoContent();
-        }
+        } 
 
         private bool UserExists(Guid id)
         {
